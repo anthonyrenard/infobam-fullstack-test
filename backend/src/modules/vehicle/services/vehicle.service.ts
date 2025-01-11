@@ -26,7 +26,6 @@ export class VehicleService {
     sort?: { field: 'price' | 'year'; order: 'ASC' | 'DESC' },
   ): Promise<{ data: Vehicle[]; total: number }> {
     try {
-      // Validate pagination parameters
       if (page <= 0 || limit <= 0) {
         throw new BadRequestException('Page and limit must be greater than 0');
       }
@@ -41,7 +40,7 @@ export class VehicleService {
         filteredVehicles = filteredVehicles.filter(vehicle => vehicle.type === filters.type);
       }
       if (filters.year) {
-        filteredVehicles = filteredVehicles.filter(vehicle => vehicle.year === filters.year);
+        filteredVehicles = filteredVehicles.filter(vehicle => vehicle.year === Number(filters.year));
       }
 
       // Apply sorting
