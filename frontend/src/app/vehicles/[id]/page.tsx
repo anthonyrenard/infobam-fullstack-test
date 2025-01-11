@@ -1,5 +1,5 @@
 import React from "react";
-import { Vehicle } from "../../../types/vehicle.type";
+import { Vehicle } from "../../types/vehicle.type";
 import { FaCar, FaTag, FaCalendarAlt, FaInfoCircle } from "react-icons/fa";
 
 async function fetchVehicle(id: string): Promise<Vehicle> {

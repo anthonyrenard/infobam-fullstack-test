@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { Vehicle } from '../../types/vehicle.type';
 import Filters from '@/components/vehicles/Filters';
 import VehiclesListWithPagination from '@/components/vehicles/List';
+import { Vehicle } from '@/types/vehicle.type';
 
 
 const VehiclesList: React.FC = () => {
