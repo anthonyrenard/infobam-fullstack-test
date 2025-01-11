@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Param } from '@nestjs/common';
+import { Controller, Get, Query, Param, NotFoundException, BadRequestException, InternalServerErrorException } from '@nestjs/common';
 import { VehicleService } from '../services/vehicle.service';
 import { Vehicle } from '../entities/vehicle.entity';
 import { GetVehiclesQueryDto } from '../dto/find.dto';
@@ -21,10 +21,24 @@ export class VehicleController {
   async getPaginatedVehicles(
     @Query() query: GetVehiclesQueryDto,
   ): Promise<{ data: Vehicle[]; total: number }> {
-    const { page, limit, manufacturer, type, year, sortField, sortOrder } = query;
-    const filters = { manufacturer, type, year };
-    const sort = sortField && sortOrder ? { field: sortField, order: sortOrder } : undefined;
-    return this.vehicleService.getVehicles(page, limit, filters, sort);
+    try {
+      const { page, limit, manufacturer, type, year, sortField, sortOrder } = query;
+
+      if (page <= 0 || limit <= 0) {
+        throw new BadRequestException('Page and limit must be greater than 0.');
+      }
+
+      const filters = { manufacturer, type, year };
+      const sort = sortField && sortOrder ? { field: sortField, order: sortOrder } : undefined;
+
+      const result = await this.vehicleService.getVehicles(page, limit, filters, sort);
+      return result;
+    } catch (error) {
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
+      throw new InternalServerErrorException('Error occurred while fetching vehicles');
+    }
   }
 
   /**
@@ -33,6 +47,17 @@ export class VehicleController {
    */
   @Get(':id')
   async getVehicleById(@Param('id') id: string): Promise<Vehicle> {
-    return this.vehicleService.getVehicleById(id);
+    try {
+      const vehicle = await this.vehicleService.getVehicleById(id);
+      if (!vehicle) {
+        throw new NotFoundException(`Vehicle with ID ${id} not found`);
+      }
+      return vehicle;
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new InternalServerErrorException('Error occurred while retrieving the vehicle');
+    }
   }
 }
