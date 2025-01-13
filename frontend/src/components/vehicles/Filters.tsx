@@ -55,6 +55,7 @@ const Filters: React.FC<FiltersProps> = ({
         <div className="flex gap-4 flex-1">
           {/* Manufacturer Filter */}
           <select
+            role='combobox'
             className="h-12 w-[200px] p-2 bg-white text-gray-700 rounded-md placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             value={manufacturer}
             onChange={(e) => setManufacturer(e.target.value)}
@@ -67,6 +68,7 @@ const Filters: React.FC<FiltersProps> = ({
 
           {/* Type Filter */}
           <select
+            role='combobox'
             className="h-12 w-[200px] p-2 bg-white text-gray-700 rounded-md placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             value={type}
             onChange={(e) => setType(e.target.value)}
