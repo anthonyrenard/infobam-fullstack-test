@@ -20,8 +20,16 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["jest", "node"], // Adds Jest and Node.js types for testing
+    "baseUrl": "." // Ensures absolute imports work with Jest
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "jest.setup.ts" // Ensures Jest setup file is included
+  ],
+  "exclude": ["node_modules", "jest.config.ts"] // Avoid conflicts with Jest config
 }
