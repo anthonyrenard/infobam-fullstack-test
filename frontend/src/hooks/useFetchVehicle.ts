@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Vehicle } from "@/types/Vehicle";
 
-export const useVehicle = () => {
+export const useFetchVehicle = () => {
     const [vehicles, setVehicles] = useState<Vehicle[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
