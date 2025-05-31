@@ -1,5 +1,5 @@
 import { Vehicle } from "@/types/Vehicle";
-import { vehicleList } from "../data/vehicleList";
+import { vehicleList } from "@/data/vehicleList";
 
 
 class VehicleService {
