@@ -5,6 +5,10 @@ export const useVehicle = () => {
     const [vehicles, setVehicles] = useState<Vehicle[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+
     useEffect(() => {
         const fetchVehicles = async () => {
             try {
@@ -22,5 +26,12 @@ export const useVehicle = () => {
         fetchVehicles();
     }, []);
 
-    return { vehicles };
+    return { vehicles,
+        currentPage,
+        totalPages,
+        pageSize,
+        isLoading,
+        setCurrentPage,
+        setPageSize,
+    };
 }
