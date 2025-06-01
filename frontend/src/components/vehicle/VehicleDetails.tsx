@@ -100,7 +100,7 @@ export default function VehicleDetails({ vehicle, resetSelectedVehicle }: Vehicl
 
                         {/* Caractéristiques */}
                         <div>
-                            <h4 className="font-semibold mb-2">Caractéristiques</h4>
+                            <h4 className="font-semibold mb-2">Features</h4>
                             <div className="flex flex-wrap gap-2">
                                 {vehicle.features.map((feature, index) => (
                                     <span key={index} className="badge badge-outline">
@@ -114,7 +114,7 @@ export default function VehicleDetails({ vehicle, resetSelectedVehicle }: Vehicl
                         {/* Galerie d'images */}
                         {vehicle.images.length > 1 && (
                             <div>
-                                <h4 className="font-semibold mb-2">Galerie</h4>
+                                <h4 className="font-semibold mb-2">Gallery</h4>
                                 <div className="grid grid-cols-4 gap-2">
                                     {vehicle.images.map((image, index) => (
                                         <div key={index} className={`relative h-20 rounded-lg overflow-hidden cursor-pointer ${selectedImage === index ? "border-2 border-primary" : ""}`} onClick={() => setSelectedImage(index)}>
