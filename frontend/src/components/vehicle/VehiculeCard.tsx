@@ -9,7 +9,7 @@ interface VehiculeCardProps {
 
 export default function VehiculeCard({ vehicle }: VehiculeCardProps) {
     return (
-        <div className="card bg-base-100 h-full w-96 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+        <div className="card bg-base-100 h-full w-96 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-slate-400">
             <figure className="relative h-48">
                 <img
                     src={vehicle.images[0]}
