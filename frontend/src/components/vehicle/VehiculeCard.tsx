@@ -40,20 +40,6 @@ export default function VehiculeCard({ vehicle }: VehiculeCardProps) {
                         <span>{vehicle.mileage} km</span>
                     </div>
                 </div>
-
-                <div className="mb-4">
-                    <div className="flex items-center gap-2 mb-2">
-                        {/* <FaList className="text-primary" /> */}
-                        <span className="font-semibold">Caractéristiques</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        {vehicle.features.map((feature, index) => (
-                            <span key={index} className="badge badge-outline">{feature}</span>
-                        ))}
-                    </div>
-                </div>
-
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">{vehicle.description}</p>
                 
                 <div className="card-actions justify-end">
                     <button className="btn btn-primary w-full">Voir plus de détails</button>
