@@ -21,6 +21,7 @@ export const useFetch = <T>(url: string) => {
             return responseData;
         } catch (error) {
             setError(error as Error);
+            throw error;
         } finally {
             setIsFetching(false);
         }
@@ -35,6 +36,7 @@ export const useFetch = <T>(url: string) => {
             return responseData;
         } catch (error) {
             setError(error as Error);
+            throw error;
         } finally {
             setIsFetching(false);
         }
