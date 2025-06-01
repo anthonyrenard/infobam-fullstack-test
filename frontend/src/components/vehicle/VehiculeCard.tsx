@@ -44,7 +44,7 @@ export default function VehiculeCard({ vehicle, setSelectedVehicle }: VehiculeCa
                 </div>
                 
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary w-full" onClick={() => setSelectedVehicle(vehicle)}>Voir plus de détails</button>
+                    <button className="btn btn-primary w-full" onClick={() => setSelectedVehicle(vehicle)}>Show details</button>
                 </div>
             </div>
         </div>
