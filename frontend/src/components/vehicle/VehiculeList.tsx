@@ -20,6 +20,8 @@ export default function VehiculeList() {
     totalPages: 0,
   });
 
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+
   const { sortBy, setSortBy, sortByOptions } = useVehicleSorter();
 
   const { filterOptions, filterData, setFilterData, isFetching: isFilterFetching } = useVehicleFilter();
