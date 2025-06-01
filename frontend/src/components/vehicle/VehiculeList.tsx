@@ -11,6 +11,7 @@ import useVehicleFilter from "@/hooks/vehicle/useVehicleFilter";
 import { FaInbox } from "react-icons/fa";
 import VehicleSorter from "./VehicleSorterBy";
 import useVehicleSorter from "@/hooks/vehicle/useVehicleSorter";
+import VehicleDetails from "./VehicleDetails";
 
 export default function VehiculeList() {
   const { data, isFetching, error, post } = useFetch<VehicleResponse>("/api/vehicles");
@@ -60,6 +61,7 @@ export default function VehiculeList() {
           </div>
         )}
       </div>
+      <VehicleDetails vehicle={selectedVehicle} resetSelectedVehicle={() => setSelectedVehicle(null)} />
       {!!data?.data.length && data?.data.length > 0 && (
         <Pagination
           currentPage={currentPage}
