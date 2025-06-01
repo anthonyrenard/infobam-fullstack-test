@@ -48,3 +48,7 @@ export interface VehicleFilterData {
     type: string;
     year: string;
 }
+
+export interface VehicleSortByOptions {
+    sortByOptions: string[];
+}
