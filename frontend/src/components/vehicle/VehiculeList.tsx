@@ -1,7 +1,7 @@
 "use client";
 
 import VehiculeCard from "./VehiculeCard";
-import { Vehicle, VehiclePaginatedResponse, VehicleFilterData } from "@/types/Vehicle";
+import { Vehicle, VehicleFilterData, VehicleResponse } from "@/types/Vehicle";
 import { useFetch } from "@/hooks/useFetch";
 import { usePagination } from "@/hooks/usePagination";
 import { useEffect, useState } from "react";
@@ -11,7 +11,7 @@ import useVehicleFilter from "@/hooks/vehicle/useVehicleFilter";
 import { FaInbox } from "react-icons/fa";
 
 export default function VehiculeList() {
-  const { data, isFetching, error, post } = useFetch<VehiclePaginatedResponse>("/api/vehicles");
+  const { data, isFetching, error, post } = useFetch<VehicleResponse>("/api/vehicles");
   const { currentPage, goToNextPage, goToPrevPage, goToPage, setTotalPages } = usePagination({
     currentPage: 1,
     totalPages: 0,
