@@ -9,7 +9,7 @@ import Pagination from "../pagination/Pagination";
 import VehicleFilter from "./VehicleFilter";
 import useVehicleFilter from "@/hooks/vehicle/useVehicleFilter";
 import { FaInbox } from "react-icons/fa";
-import VehicleSorter from "./VehicleSorter";
+import VehicleSorter from "./VehicleSorterBy";
 import useVehicleSorter from "@/hooks/vehicle/useVehicleSorter";
 
 export default function VehiculeList() {
