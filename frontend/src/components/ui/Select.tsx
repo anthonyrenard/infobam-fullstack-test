@@ -1,3 +1,5 @@
+"use client";
+
 interface SelectProps {
     label: string;
     placeholder: string;
