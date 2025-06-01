@@ -12,8 +12,8 @@ class VehicleService {
     return this.vehicles;
   }
 
-  async getPaginatedVehicles(page: number, pageSize: number) {
-    return this.vehicles.slice((page - 1) * pageSize, page * pageSize);
+  async getPaginatedVehicles(vehicles : Vehicle[], page: number, pageSize: number) {
+    return vehicles.slice((page - 1) * pageSize, page * pageSize);
   }
 
   async getVehicleById(id: string) {
