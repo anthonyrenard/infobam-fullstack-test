@@ -1,8 +1,8 @@
 import { Vehicle, VehicleFilterData } from "@/types/Vehicle";
 import { vehicleList } from "@/data/vehicleList";
-import { vehicleManufacturerList } from "@/data/vehicleManufacturerList";
-import { vehicleTypeList } from "@/data/vehicleTypeList";
-import { vehicleYearList } from "@/data/vehicleYearList";
+import { vehicleManufacturerOptions } from "@/data/vehicleManufacturerOptions";
+import { vehicleTypeOptions } from "@/data/vehicleTypeOptions";
+import { vehicleYearOptions } from "@/data/vehicleYearOptions";
 
 
 class VehicleService {
@@ -40,15 +40,15 @@ class VehicleService {
   }
 
   async getVehicleManufacturers() {
-    return vehicleManufacturerList;
+    return vehicleManufacturerOptions;
   }
 
   async getVehicleTypes() {
-    return vehicleTypeList;
+    return vehicleTypeOptions;
   }
 
   async getVehicleYears() {
-    return vehicleYearList;
+    return vehicleYearOptions;
   }
 }
 
