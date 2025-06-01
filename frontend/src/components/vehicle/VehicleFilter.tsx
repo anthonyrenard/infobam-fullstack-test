@@ -1,3 +1,5 @@
+"use client";
+
 import Loader from "../ui/Loader";
 import Select from "../ui/Select";
 import { VehicleFilterData } from "@/types/Vehicle";
