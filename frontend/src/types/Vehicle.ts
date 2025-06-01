@@ -32,7 +32,19 @@ export enum FuelType {
     PLUGIN_HYBRID = "PLUGIN_HYBRID",
 }
 
-export interface VehiclePaginatedResponse {
+export interface VehicleResponse {
     data: Vehicle[];
     totalPages: number;
+}
+
+export interface VehicleFilterOptions {
+    manufacturersOptions: string[];
+    typesOptions: string[];
+    yearsOptions: string[];
+}
+
+export interface VehicleFilterData {
+    manufacturer: string;
+    type: string;
+    year: string;
 }
