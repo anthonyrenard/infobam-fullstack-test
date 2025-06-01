@@ -9,6 +9,8 @@ import Pagination from "../pagination/Pagination";
 import VehicleFilter from "./VehicleFilter";
 import useVehicleFilter from "@/hooks/vehicle/useVehicleFilter";
 import { FaInbox } from "react-icons/fa";
+import VehicleSorter from "./VehicleSorter";
+import useVehicleSorter from "@/hooks/vehicle/useVehicleSorter";
 
 export default function VehiculeList() {
   const { data, isFetching, error, post } = useFetch<VehicleResponse>("/api/vehicles");
@@ -17,27 +19,33 @@ export default function VehiculeList() {
     totalPages: 0,
   });
 
+  const { sortBy, setSortBy, sortByOptions } = useVehicleSorter();
+
   const { filterOptions, filterData, setFilterData, isFetching: isFilterFetching } = useVehicleFilter();
 
   useEffect(() => {
     post({
       page: currentPage,
       filterData: filterData,
+      sortBy: sortBy,
     });
     setTotalPages(data?.totalPages || 0);
-  }, [currentPage, filterData]);
+  }, [currentPage, filterData, sortBy]);
 
 
   return (
     <div className="flex flex-col gap-4">
-      <VehicleFilter
-        manufacturerOptions={filterOptions.manufacturersOptions}
-        typeOptions={filterOptions.typesOptions}
-        yearOptions={filterOptions.yearsOptions}
-        isFetching={isFilterFetching || isFetching}
-        filter={filterData}
-        setFilter={(filter: VehicleFilterData) => setFilterData(filter)}
-      />
+      <div className="flex flex-row justify-between items-center">
+        <VehicleFilter
+          manufacturerOptions={filterOptions.manufacturersOptions}
+          typeOptions={filterOptions.typesOptions}
+          yearOptions={filterOptions.yearsOptions}
+          isFetching={isFilterFetching || isFetching}
+          filter={filterData}
+          setFilter={(filter: VehicleFilterData) => setFilterData(filter)}
+        />
+        <VehicleSorter sortBy={sortBy} setSortBy={setSortBy} sortByOptions={sortByOptions} />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
         {data?.data.map((vehicle: Vehicle) => (
           <div key={vehicle.id} className="w-full h-full flex justify-center items-center">
