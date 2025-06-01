@@ -12,7 +12,7 @@ interface VehicleSorterProps {
 export default function VehicleSorter({ sortBy, setSortBy, sortByOptions }: VehicleSorterProps) {
 
     return (
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row py-2 w-full justify-center md:justify-end">
             <Select
                 label="Sort by"
                 placeholder="-- Sort by --"
