@@ -1,3 +1,5 @@
+"use client";
+
 import { Vehicle } from "@/types/Vehicle";
 import { FaCar, FaCalendarAlt, FaGasPump, FaCog, FaRoad, FaList } from 'react-icons/fa';
 
