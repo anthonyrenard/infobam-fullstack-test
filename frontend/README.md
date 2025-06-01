@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Documentation du Projet
 
-## Getting Started
+## Routes API
 
-First, run the development server:
+Les routes API sont les points d'entrée HTTP de l'application. Ce sont les URLs que vous appelez depuis le frontend pour communiquer avec le backend.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### `/api/vehicles`
+- **Méthode**: POST
+- **Description**: Récupère les véhicules avec pagination, filtrage et tri
+- **Corps de la requête**:
+  ```typescript
+  {
+    page: number,        // Page actuelle (min: 1)
+    sortBy: string,      // Option de tri
+    filterData: {
+      manufacturer: string,
+      type: string,
+      year: string
+    }
+  }
+  ```
+- **Réponse**:
+  ```typescript
+  {
+    data: Vehicle[],     // Liste des véhicules
+    totalPages: number   // Nombre total de pages
+  }
+  ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### `/api/vehicles/filter`
+- **Méthode**: GET
+- **Description**: Récupère les options de filtrage disponibles
+- **Réponse**:
+  ```typescript
+  {
+    manufacturersOptions: string[],
+    typesOptions: string[],
+    yearsOptions: string[]
+  }
+  ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### `/api/vehicles/sorter`
+- **Méthode**: GET
+- **Description**: Récupère les options de tri disponibles
+- **Réponse**:
+  ```typescript
+  {
+    sortByOptions: string[]
+  }
+  ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Services API (VehicleService)
 
-## Learn More
+Les services API sont des classes qui encapsulent la logique métier et les opérations sur les données. Ils sont utilisés en interne par les routes API pour effectuer les opérations nécessaires.
 
-To learn more about Next.js, take a look at the following resources:
+### Méthodes Principales
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `getVehicles()`: Récupère la liste complète des véhicules
+- `getPaginatedVehicles(vehicles, page, pageSize)`: Récupère une page spécifique de véhicules
+- `getVehicleById(id)`: Récupère un véhicule spécifique par son ID
+- `getTotalVehicles()`: Retourne le nombre total de véhicules
+- `getFilteredVehicles(filterData)`: Filtre les véhicules selon différents critères
+- `getSortedVehicles(vehicles, sortBy)`: Trie les véhicules selon différents critères
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Méthodes de Filtrage et Tri
 
-## Deploy on Vercel
+- `getVehicleSortByOptions()`: Retourne les options de tri disponibles
+- `getVehicleManufacturers()`: Retourne la liste des fabricants
+- `getVehicleTypes()`: Retourne les types de véhicules disponibles
+- `getVehicleYears()`: Retourne les années disponibles
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Structure des Composants
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Dossiers Principaux
+
+- `/components/vehicle/`: Composants liés aux véhicules
+- `/components/ui/`: Composants d'interface utilisateur réutilisables
+- `/components/pagination/`: Composants de pagination
+
+## Types de Données
+
+Les types principaux sont définis dans le dossier `/types/` :
+
+- `Vehicle`: Interface définissant la structure d'un véhicule
+- `VehicleFilterData`: Interface pour les données de filtrage
+
+## Données Statiques
+
+Les données statiques sont stockées dans le dossier `/data/` :
+
+- `vehicleList`: Liste des véhicules
+- `vehicleManufacturerOptions`: Options de fabricants
+- `vehicleTypeOptions`: Options de types de véhicules
+- `vehicleYearOptions`: Options d'années
+- `vehicleSortByOptions`: Options de tri
+
+## Hooks Personnalisés
+
+Les hooks personnalisés sont disponibles dans le dossier `/hooks/` pour la logique réutilisable.
+
+## Services
+
+Les services sont situés dans le dossier `/services/` et gèrent la logique métier et les appels API.
