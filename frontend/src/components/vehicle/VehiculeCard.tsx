@@ -3,9 +3,11 @@ import { FaCar, FaCalendarAlt, FaGasPump, FaCog, FaRoad, FaList } from 'react-ic
 
 interface VehiculeCardProps {
     vehicle: Vehicle;
+    setSelectedVehicle: (vehicle: Vehicle) => void;
 }
 
-export default function VehiculeCard({ vehicle }: VehiculeCardProps) {
+export default function VehiculeCard({ vehicle, setSelectedVehicle }: VehiculeCardProps) {
+    
     return (
         <div className="card bg-base-100 h-full w-96 shadow-xl hover:shadow-2xl transition-shadow duration-300">
             <figure className="relative h-48">
@@ -54,7 +56,7 @@ export default function VehiculeCard({ vehicle }: VehiculeCardProps) {
                 <p className="text-sm text-gray-600 mb-4 line-clamp-2">{vehicle.description}</p>
                 
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary w-full">Voir plus de détails</button>
+                    <button className="btn btn-primary w-full" onClick={() => setSelectedVehicle(vehicle)}>Voir plus de détails</button>
                 </div>
             </div>
         </div>
