@@ -1,5 +1,8 @@
 import { Vehicle } from "@/types/Vehicle";
 import { vehicleList } from "@/data/vehicleList";
+import { vehicleManufacturerList } from "@/data/vehicleManufacturerList";
+import { vehicleTypeList } from "@/data/vehicleTypeList";
+import { vehicleYearList } from "@/data/vehicleYearList";
 
 
 class VehicleService {
@@ -19,6 +22,18 @@ class VehicleService {
 
   async getTotalVehicles() {
     return this.vehicles.length;
+  }
+
+  async getVehicleManufacturers() {
+    return vehicleManufacturerList;
+  }
+
+  async getVehicleTypes() {
+    return vehicleTypeList;
+  }
+
+  async getVehicleYears() {
+    return vehicleYearList;
   }
 }
 
