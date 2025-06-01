@@ -1,7 +1,7 @@
 "use client";
 
 import { Vehicle } from "@/types/Vehicle";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
     FaTruck,
     FaCalendarAlt,
@@ -18,6 +18,8 @@ interface VehicleDetailsProps {
 }
 
 export default function VehicleDetails({ vehicle, resetSelectedVehicle }: VehicleDetailsProps) {
+    const [selectedImage, setSelectedImage] = useState<number | null>(null);
+
     const showModal = () => {
         const modal = document?.getElementById('my_modal_1') as any;
         if (modal) {
@@ -50,7 +52,7 @@ export default function VehicleDetails({ vehicle, resetSelectedVehicle }: Vehicl
                         {/* En-tête avec image principale */}
                         <div className="relative h-64 rounded-lg overflow-hidden">
                             <img
-                                src={vehicle.images[0]}
+                                src={selectedImage ? vehicle.images[selectedImage] : vehicle.images[0]}
                                 alt={`${vehicle.manufacturer} ${vehicle.model}`}
                                 className="w-full h-full object-cover"
                             />
@@ -114,8 +116,8 @@ export default function VehicleDetails({ vehicle, resetSelectedVehicle }: Vehicl
                             <div>
                                 <h4 className="font-semibold mb-2">Galerie</h4>
                                 <div className="grid grid-cols-4 gap-2">
-                                    {vehicle.images.slice(1).map((image, index) => (
-                                        <div key={index} className="relative h-20 rounded-lg overflow-hidden">
+                                    {vehicle.images.map((image, index) => (
+                                        <div key={index} className={`relative h-20 rounded-lg overflow-hidden cursor-pointer ${selectedImage === index ? "border-2 border-primary" : ""}`} onClick={() => setSelectedImage(index)}>
                                             <img
                                                 src={image}
                                                 alt={`${vehicle.manufacturer} ${vehicle.model} - Image ${index + 2}`}
