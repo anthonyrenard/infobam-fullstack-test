@@ -1,4 +1,4 @@
-import { Vehicle } from "@/types/Vehicle";
+import { Vehicle, VehicleFilterData } from "@/types/Vehicle";
 import { vehicleList } from "@/data/vehicleList";
 import { vehicleManufacturerList } from "@/data/vehicleManufacturerList";
 import { vehicleTypeList } from "@/data/vehicleTypeList";
@@ -22,6 +22,21 @@ class VehicleService {
 
   async getTotalVehicles() {
     return this.vehicles.length;
+  }
+
+  async getFilteredVehicles(filterData: VehicleFilterData) {
+    return this.vehicles.filter((vehicle) => {
+      if(filterData.manufacturer.length > 0 && !filterData.manufacturer.includes(vehicle.manufacturer)) {
+        return false;
+      }
+      if(filterData.type.length > 0 && !filterData.type.includes(vehicle.type)) {
+        return false;
+      }
+      if(filterData.year.length > 0 && !filterData.year.includes(vehicle.year.toString())) {
+        return false;
+      }
+      return true;
+    });
   }
 
   async getVehicleManufacturers() {
