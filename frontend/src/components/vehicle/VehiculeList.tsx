@@ -35,7 +35,7 @@ export default function VehiculeList() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex md:flex-row flex-col justify-between items-center">
         <VehicleFilter
           manufacturerOptions={filterOptions.manufacturersOptions}
           typeOptions={filterOptions.typesOptions}
